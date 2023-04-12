@@ -1,0 +1,202 @@
+<div class="container" fxFlex="95%">
+    
+    <form [formGroup]="form_field" fxLayout="column" >
+      <h1>Personal Information:</h1>
+      <div class="row" fxLayout="row" fxLayout.lt-sm="column" fxFlex="95%" fxLayoutGap="10%"  fxLayoutGap.lt-sm="10px">
+          <div class="input1" fxLayout="row" fxFlex="50%" fxFlex.lt-sm="100%" fxLayout.lt-sm="column">
+              <mat-label fxFlex="30%">First Name</mat-label>
+              <mat-form-field appearance="outline" fxFlex="70%">
+                  <input matInput formControlName="firstname">
+                  <mat-error *ngIf="form_field?.get('firstname')?.hasError('required')">
+                      This field is Mandatory.
+                  </mat-error>
+                  <mat-error *ngIf="form_field?.get('firstname')?.hasError('pattern')">
+                      Invalid Name
+                  </mat-error>
+              </mat-form-field>
+          </div>
+          <div class="input2" fxLayout="row" fxFlex="50%" fxFlex.lt-sm="100%" fxLayout.lt-sm="column">
+              <mat-label fxFlex="30%">Last Name</mat-label>
+              <mat-form-field appearance="outline" fxFlex="70%">
+                  <input matInput formControlName="lastname">
+                  <mat-error *ngIf="form_field?.get('lastname')?.hasError('required')">
+                      This field is Mandatory.
+                  </mat-error>
+              </mat-form-field>
+          </div>
+      </div>
+      <div class="row" fxLayout="row" fxLayout.lt-sm="column" fxFlex="95%" fxLayoutGap="10%" fxLayoutGap.lt-sm="10px">
+          <div class="input3" fxLayout="row" fxFlex="50%" fxFlex.lt-sm="100%" fxLayout.lt-sm="column">
+              <mat-label fxFlex="30%"> Mail</mat-label>
+              <mat-form-field appearance="outline" fxFlex="70%">
+                  <input matInput formControlName="mail">
+                  <mat-error *ngIf="form_field?.get('mail')?.hasError('required')">
+                      This field is Mandatory.
+                  </mat-error>
+                  <mat-error *ngIf="form_field?.get('mail')?.hasError('pattern')">
+                      Invalid Mail
+                  </mat-error>
+              </mat-form-field>
+          </div>
+          <div class="input4" fxLayout="row" fxFlex="50%" fxFlex.lt-sm="100%" fxLayout.lt-sm="column">
+              <mat-label fxFlex="30%">Roll</mat-label>
+              <mat-form-field appearance="outline" fxFlex="70%">
+                  <mat-select formControlName="roll" >
+                      <mat-option [value]="option.id" *ngFor="let option of roll;">{{option.value}}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="form_field?.get('roll')?.hasError('required')">
+                      This field is Mandatory.
+                  </mat-error>
+              </mat-form-field>
+          </div>
+  
+      </div>
+      <div class="row" fxLayout="row" fxLayout.lt-sm="column" fxFlex="95%" fxLayoutGap="10%" fxLayoutGap.lt-sm="10px">
+          <div class="input5" fxLayout="row" fxFlex="50%" fxFlex.lt-sm="100%" fxLayout.lt-sm="column">
+              <mat-label fxFlex="30%"> Date of Birth</mat-label>
+              <mat-form-field appearance="outline" fxFlex="70%">
+                  <input matInput [matDatepicker]="picker1" formControlName="dob" [max]="tody">
+                  <mat-error *ngIf="form_field?.get('dob')?.hasError('required')&& !form_field?.get('dob')?.hasError('matDatepickerParse') ">
+                      This field is Mandatory.
+                  </mat-error>
+                  <mat-error *ngIf="form_field?.get('dob')?.hasError('required')&& form_field?.get('dob')?.hasError('matDatepickerParse') ">
+                      Invalid Input.
+                  </mat-error>
+                  <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+          </div>
+          <div class="input6" fxLayout="row" fxFlex="50%" fxFlex.lt-sm="100%" fxLayout.lt-sm="column">
+              <mat-label fxFlex="30%">Date of Joining</mat-label>
+              <mat-form-field appearance="outline" fxFlex="70%">
+                  <input matInput [matDatepicker]="picker2" formControlName="doj" [min]="form_field.get('dob')?.value">
+                  <mat-error *ngIf="form_field?.get('doj')?.hasError('required')&& !form_field?.get('doj')?.hasError('matDatepickerParse') ">
+                      This field is Mandatory.
+                  </mat-error>
+                  <mat-error *ngIf="form_field?.get('doj')?.hasError('required')&& form_field?.get('doj')?.hasError('matDatepickerParse') ">
+                      Invalid Input.
+                  </mat-error>
+                  <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+          </div>
+  
+      </div>
+      
+      <mat-divider class="hr"></mat-divider>
+      <!-- Start of Contact -->
+      <div  *ngIf="form_field && getContacts().length > 0">
+          <div formArrayName='Contacts' >
+            <div fxLayout="row" fxLayoutAlign="start center">
+              <div class="heading" > Contacts</div>
+            </div>
+            <div *ngFor="let item of getContacts(); let i=index">
+              <div [formGroupName]="i" fxLayout="column">
+                <div fxlayout="row" fxLayoutAlign="end center" fxFlex="95%"  fxLayoutGap="10px">
+                  <mat-icon (click)="removeitem(i)" (click)="opensnack('sub')" class="form-array-icon" *ngIf="i!==0">remove_circle</mat-icon>
+                  <mat-icon (click)="createArray()" (click)="opensnack('add')"class="form-array-icon">add_circle</mat-icon>
+                </div>
+                <div class="row" fxLayout="row" fxLayout.lt-sm="column" fxFlex="95%" fxLayoutGap="10%" fxLayoutGap.lt-sm="10px">
+                  <div fxLayout="row" fxFlex="50%" fxFlex.lt-sm="100%" fxLayout.lt-sm="column">
+                    <mat-label fxFlex="30%">Address</mat-label>
+                    <mat-form-field fxFlex="70%" appearance="outline">
+                      <input matInput formControlName="Address" />
+                      <mat-error *ngIf="getControls(form_field,i).Address?.hasError('required')">
+                        This field is required!
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div fxLayout="row" fxFlex="50%" fxFlex.lt-sm="100%" fxLayout.lt-sm="column">
+                      <mat-label fxFlex="30%">City</mat-label>
+                      <mat-form-field fxFlex="70%" appearance="outline">
+                        <input matInput formControlName="Address" />
+                        <mat-error *ngIf="getControls(form_field,i).Address?.hasError('required')">
+                          This field is required!
+                        </mat-error>
+                      </mat-form-field>
+                  </div>
+                </div>
+                <div class="row" fxLayout="row" fxLayout.lt-sm="column" fxFlex="95%" fxLayoutGap="10%" fxLayoutGap.lt-sm="10px">
+                  <div fxLayout="row" fxFlex="50%" fxFlex.lt-sm="100%" fxLayout.lt-sm="column">
+                    <mat-label fxFlex="30%">State</mat-label>
+                    <mat-form-field fxFlex="70%" appearance="outline">
+                      <input matInput formControlName="Address" />
+                      <mat-error *ngIf="getControls(form_field,i).Address?.hasError('required')">
+                        This field is required!
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div fxLayout="row" fxFlex="50%" fxFlex.lt-sm="100%" fxLayout.lt-sm="column">
+                      <mat-label fxFlex="30%">Pincode</mat-label>
+                      <mat-form-field fxFlex="70%" appearance="outline">
+                        <input matInput formControlName="Address" />
+                        <mat-error *ngIf="getControls(form_field,i).Address?.hasError('required')">
+                          This field is required!
+                        </mat-error>
+                      </mat-form-field>
+                  </div>
+                </div>
+                <mat-divider class="hr"></mat-divider>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End of Contact -->
+  
+      <!-- <div class="row" fxLayout="row" fxLayout.lt-sm="column" fxFlex="95%" fxLayoutGap="10%"  fxLayoutGap.lt-sm="10px">
+          <div class="inputc1" fxLayout="row" fxFlex="50%" fxFlex.lt-sm="100%" fxLayout.lt-sm="column">
+              <mat-label fxFlex="30%">Address</mat-label>
+              <mat-form-field appearance="outline" fxFlex="70%">
+                  <input matInput formControlName="address">
+                  <mat-error *ngIf="form_field?.get('address')?.hasError('required')">
+                      This field is Mandatory.
+                  </mat-error>
+                  
+              </mat-form-field>
+          </div>
+          <div class="inputc2" fxLayout="row" fxFlex="50%" fxFlex.lt-sm="100%" fxLayout.lt-sm="column">
+              <mat-label fxFlex="30%">City</mat-label>
+              <mat-form-field appearance="outline" fxFlex="70%">
+                  <input matInput formControlName="city">
+                  <mat-error *ngIf="form_field?.get('city')?.hasError('required')">
+                      This field is Mandatory.
+                  </mat-error>
+                  <mat-error *ngIf="form_field?.get('city')?.hasError('pattern')">
+                      Invalid City
+                  </mat-error>
+              </mat-form-field>
+          </div>
+      </div>
+      <div class="row" fxLayout="row" fxLayout.lt-sm="column" fxFlex="95%" fxLayoutGap="10%" fxLayoutGap.lt-sm="10px">
+          <div class="inputc3" fxLayout="row" fxFlex="50%" fxFlex.lt-sm="100%" fxLayout.lt-sm="column">
+              <mat-label fxFlex="30%">State</mat-label>
+              <mat-form-field appearance="outline" fxFlex="70%">
+                  <input matInput formControlName="state">
+                  <mat-error *ngIf="form_field?.get('state')?.hasError('required')">
+                      This field is Mandatory.
+                  </mat-error>
+                  <mat-error *ngIf="form_field?.get('state')?.hasError('pattern')">
+                      Invalid State
+                  </mat-error>
+              </mat-form-field>
+          </div>
+          <div class="inputc4" fxLayout="row" fxFlex="50%" fxFlex.lt-sm="100%" fxLayout.lt-sm="column">
+              <mat-label fxFlex="30%">Pincode</mat-label>
+              <mat-form-field appearance="outline" fxFlex="70%">
+                  <input matInput formControlName="pincode">
+                  <mat-error *ngIf="form_field?.get('pincode')?.hasError('required')">
+                      This field is Mandatory.
+                  </mat-error>
+                  <mat-error *ngIf="form_field?.get('pincode')?.hasError('pattern')">
+                      Invalid Pincode
+                  </mat-error>
+              </mat-form-field>
+          </div>
+  
+      </div> -->
+      <div align="center">
+          <button mat-raised-button color="primary" >Submit</button>
+      </div>
+  </form>
+    
+  </div>

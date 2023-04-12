@@ -1,0 +1,38 @@
+<div fxflex fxLayout="row" fxLayoutGap="10%" class="pipe" fxLayoutAlign="center">
+<div class="left">
+    <div class="input1">
+        <div>
+            <h1 fxflex fxLayout="row" [ngClass]="check?'black':'blue'">Seach Box<p *ngIf="search_text!=''">({{search_count}})</p></h1>
+        </div>
+        <input matInput [(ngModel)]="search_text" placeholder="Type here to search..">
+        <button mat-raised-button (click)="_clear()">Clear</button>
+    </div>
+    <br>
+    <br>
+    <div class="input2">
+        <h1 [ngStyle]="styleng">{{"Add Name"|uppercase}}</h1>
+        <input matInput [(ngModel)]="add_text" placeholder="Type here to add..">
+        <button mat-raised-button (click)="_add()">Add</button>
+    </div>
+    <br>
+    <br>
+    <div class="input3">
+        <h1>Remove Name</h1>
+        <input matInput [(ngModel)]="remove_text" placeholder="Type here to remove..">
+        <button mat-raised-button (click)="_pop()">Remove</button>
+    </div>
+    <br>
+    <br>
+    <div class="input4">
+        <h1>To camel Case</h1>
+        <input matInput [(ngModel)]="convert_text" placeholder="Type here to convert..">
+    <br>
+    <br>
+        <p>{{convert_text|camel}}</p>
+    </div>
+</div>
+<div class="right">
+    <h2>L_End Developers</h2>
+    <p *ngFor="let name of data| filter:search_text">{{name}}<p>
+</div>
+</div>

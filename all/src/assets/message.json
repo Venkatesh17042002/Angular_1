@@ -1,0 +1,6 @@
+{
+    "required_field":"This field is required",
+    "mismatched":"Password not Matched",
+    "not_email":"Is Not a valid Email"
+
+}

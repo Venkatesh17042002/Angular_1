@@ -1,0 +1,48 @@
+<div style="height: 90vh;">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span class="header">Responsive Navigation</span>
+        <span class="menu-spacer" fxFlex="30px"></span>
+        <div fxShow="true" fxHide.lt-md fxLayoutGap="10px">
+          <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+          <a  routerLink="table" mat-button>Table</a>
+          <a routerLink="form" mat-button>Form_Field</a>
+          <a  routerLink="changepassword" mat-button>Change_password</a>
+          <a routerLink="login" mat-button>Login</a>
+          <a  routerLink="snackbar" mat-button>Snackbar</a>
+          <a  routerLink="pipe" mat-button>Pipe</a>
+          <a  routerLink="observable" mat-button>Observable</a>
+          <a  routerLink="directives" mat-button>Directives</a>
+          <a  routerLink="http" mat-button>HTTP</a>
+        </div>
+        
+        <div fxFlex align="right">
+          <button *ngIf="show" mat-button  color="primary" class="header" (click)="onlogout()" >Logout</button>
+      </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  
+    <mat-sidenav-container fxFlexFill>
+      <mat-sidenav #sidenav>
+        <mat-nav-list>
+          <a (click)="sidenav.toggle()" mat-list-item><mat-icon>close</mat-icon></a>
+          <a (click)="sidenav.toggle()" routerLink="table" mat-list-item>Table</a>
+          <a (click)="sidenav.toggle()" routerLink="form" mat-list-item>Form_Field</a>
+          <a (click)="sidenav.toggle()" routerLink="changepassword" mat-list-item>Change_password</a>
+          <a (click)="sidenav.toggle()" routerLink="login" mat-list-item>Login</a>
+          <a (click)="sidenav.toggle()" routerLink="snackbar" mat-list-item>Snackbar</a>
+          <a (click)="sidenav.toggle()" routerLink="pipe" mat-list-item>Pipe</a>
+          <a (click)="sidenav.toggle()" routerLink="observable" mat-list-item>Observable</a>
+          <a (click)="sidenav.toggle()" routerLink="directives" mat-list-item>Directives</a>
+          <a (click)="sidenav.toggle()" routerLink="http" mat-list-item>HTTP</a>
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content fxFlexFill>
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+  

@@ -1,0 +1,38 @@
+<div class="container" fxFlex="95%" fxLayout="column">
+    <div class="header" >Change Password</div>
+    <form [formGroup]="reset" class="formgroup" fxLayout="column"  fxFlex="100%" fxFlexGap="10%">
+        <div class="oldpass row" fxFlex="100%" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center center" fxLayoutAlign.lt-sm="none none">
+            <mat-label class="lable" fxFlex="250px" fxFlex.lt-sm="0">Old Password</mat-label>
+            <mat-form-field appearance="outline" fxFlex="300px" fxFlex.lt-sm="0">
+                <input matInput formControlName="oldpassword">
+                <mat-error *ngIf="reset?.get('oldpassword')?.hasError('required')">
+                    This field is required!
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="newpass row" fxFlex="100%" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center center" fxLayoutAlign.lt-sm="none none">
+            <mat-label class="lable" fxFlex="250px" fxFlex.lt-sm="0">New Password</mat-label>
+            <mat-form-field appearance="outline" fxFlex="300px" fxFlex.lt-sm="0">
+                <input matInput formControlName="newpassword">
+                <mat-error *ngIf="reset?.get('newpassword')?.hasError('required')">
+                    This field is required!
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="confirmpass row" fxFlex="100%" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center center" fxLayoutAlign.lt-sm="none none">
+            <mat-label class="lable"fxFlex="250px" fxFlex.lt-sm="0">Confirm Password</mat-label>
+            <mat-form-field appearance="outline" fxFlex="300px" fxFlex.lt-sm="0">
+                <input matInput formControlName="confirmpassword">
+                <mat-error *ngIf="reset?.get('confirmpassword')?.hasError('required')">
+                    This field is required!
+                </mat-error>
+                <mat-error *ngIf="f && reset?.get('confirmpassword')?.value!=null">
+                    Password doesn't match! 
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="btn" Align="center" >
+            <button mat-raised-button color="primary" >Change</button>
+        </div>
+    </form>
+</div>

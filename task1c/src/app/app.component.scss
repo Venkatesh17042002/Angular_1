@@ -1,0 +1,40 @@
+.gray{
+    color: gray;
+}
+.p{
+    padding: 50px;
+}
+a{
+    text-decoration: none;
+    color: blue;
+}
+#head{
+    width: 100%;
+    height: 100%;
+    background-color: #ebeef6;
+    
+}
+
+#body{
+    width: 70%;
+}
+#left{
+    min-width: 50%;
+    box-sizing: border-box;
+    background-color: white;
+
+}
+#right{
+    min-width: 50%;
+    background-image: url("../assets/bg.png");
+    // overflow: hidden;
+    box-sizing: border-box;
+}
+button{
+    width: 100%;
+    text-align: center;
+}
+.fa-quote-left{
+    background-color:#92f8e0 ;
+    color: white;
+}

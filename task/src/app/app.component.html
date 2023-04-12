@@ -1,0 +1,62 @@
+<div id="body"  fxLayout="row" fxLayout.xs="column">
+  <div class="child-2" fxFlexOrder.xs="2" id="left">
+      <div id="dot" class="fa-solid fa-circle"></div>
+      <div id="msg">
+          <h2>Let us help you run your freelance business.</h2>
+          <p class="gray">Our registration process is quick and easy, taking no more than 10 minutes to complete.</p>
+      </div>
+      <div id="slide">
+          <div id="info">
+            <i class="fa-solid fa-quote-left gray"></i>
+            <p>I'm impressed with the results I've seen since starting to use this product, I begin receiving clients and projects in the first week.</p>
+            <div id="i-d">
+                <img src="../assets/ph.jpg" alt="img" height="40px" width="40px">
+                <div id="h">
+                    <h5>Venkatesh</h5>
+                    <h6 class="gray">Product Designer</h6>
+                </div>  
+            </div>
+          </div>
+          <div id="dots">
+            <div class="dot3 fa-solid fa-circle gray"></div>
+            <div class="dot3 fa-solid fa-circle gray"></div>
+            <div class="dot3 fa-solid fa-circle gray"></div>
+          </div>
+      </div>
+  </div>
+  <div class="child-1" fxFlexOrder.xs="1" id="right">
+        <div id="grp">
+        <h2>Get started</h2>
+        <p class="gray"> Create your account now</p>
+    </div>
+    <div class="pair">
+        <p class="gray">Full name</p>
+        <input class="input" type="text" required  [(ngModel)]="f_name">
+    </div>
+    <div class="pair">
+        <p class="gray">Email</p>
+        <input class="input" type="email" required [(ngModel)]="mail">
+    </div>
+    <div class="pair" id="password-field">
+        <p class="gray">Password</p>
+        <i id="eye" [class]="eyecls" (click)="pass_show()" ></i>
+        <input id="password" class="input" required  [type]="passtype"  [(ngModel)]="pass"(keyup)="myfunction()" >
+        <div class="q" [style.color]="sts=='Weak!'?'red':'green'" > {{sts}}</div>
+    </div>
+    <button class="btn" (click)="dialog()">Sign Up</button>
+    <p class="gray end">Have an account? <a href="#">Login</a></p>
+  </div>
+</div>
+
+<ng-template #alert>
+<h2 mat-dialog-title>Hi, {{f_name}}</h2>
+<mat-dialog-content class="mat-typography">
+ <p>confirm Your E-mail & Password</p>
+ <p>E-mail:{{mail}}</p>
+ <p>Password:{{pass}}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>No</button>
+  <button mat-raised-button color="primary"  [mat-dialog-close]="true" cdkFocusInitial>Yes</button>
+</mat-dialog-actions>
+</ng-template>

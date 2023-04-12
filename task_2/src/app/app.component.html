@@ -1,0 +1,96 @@
+<div class="head" fxLayout="row" fxLayout.lt-md="column" fxFlex="95%">
+  <div class="left" fxFlex="45%" fxFlex.lt-md="95%" fxFlex.xs="100%" fxLayout="column" fxLayoutAlign="center center">
+    <div class="main_image" fxLayout="row"fxLayoutAlign="center center">
+      <lib-ngx-image-zoom class="big_img"
+          [thumbImage]="zoom"
+          [fullImage]="zoom"
+          [magnification]="1.5"
+          [enableScrollZoom]="false"
+          [enableLens]="true"
+          [lensWidth]="150"
+          [lensHeight]="150"
+          [circularLens]="true">
+      </lib-ngx-image-zoom>
+    </div>
+    <div class="sub_image" fxLayout="row" fxLayoutGap="3%" fxLayoutAlign="center center">
+      <img class="sml_img1" fxFlex="80px"  src="../assets/{{small_1}}_chair.png" alt="gray_chair" (click)="img_click(1)">
+      <img class="sml_img2" fxFlex="80px"  src="../assets/{{small_2}}_chair.png" alt="blue_chair" (click)="img_click(2)">
+      <img class="sml_img3" fxFlex="80px"  src="../assets/{{small_3}}_chair.png" alt="green_chair" (click)="img_click(3)">
+    </div>
+  </div>
+  <div class="right" fxFlex="55%" fxFlex.lt-md="95%" fxLayout="column" fxLayoutAlign="space-around none" fxLayoutGap="5%">
+    <div class="title_group">
+      <div class="h1_group" fxLayout="row">
+        <h1>Amazing Modern Chair ({{color}}) 
+          <i class="fa-solid fa-pen-to-square"></i>
+        </h1>
+      </div>
+      <p>Added Date: 09/12/2018</p>
+      <div class="star" fxLayout fxLayoutGap="7px">
+        <mat-icon>star</mat-icon>
+        <mat-icon>star</mat-icon>
+        <mat-icon>star</mat-icon>
+        <mat-icon>star</mat-icon>
+        <mat-icon>star</mat-icon>
+      </div>
+    </div>
+    <div class="stock_group">
+      <p class="stock">Instock</p>
+    </div>
+    <div class="price_group">
+      <h3>Retail price:</h3>
+      <h1>$ {{price}}</h1>
+    </div>
+    <div class="quantity_group">
+      <p>Quantity</p>
+      <div class="input_btn" fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
+        <input type="number" [(ngModel)]="quantity" fxFlex="10%">
+        <button mat-raised-button  [disabled]="dis" color="accent" (click)="openDialog()"> <mat-icon>shopping_cart</mat-icon> Add to Cart</button>
+      </div>
+      <div *ngIf="quantity>5" class="alert" >More than 5 Product Can't be Ordered in One Time</div>
+      <div *ngIf="quantity<1" class="alert" >It's not a Valid Quantity</div>
+    </div>
+    <div  class="description_group">
+      <h3>Description:</h3>
+      <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+        looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+        distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+      </p>
+    </div>
+    <div class="bottom" fxLayout="row" fxLayout.xs="column" fxLayoutGap="10%" fxLayoutGap.xs="2%">
+      <div class="available" fxLayout="column" fxLayout.xs="row">
+        <h3>Available Stock:</h3>
+        <p>1784</p>
+      </div>
+      <div class="orders" fxLayout="column" fxLayout.xs="row">
+        <h3>Number of Orders:</h3>
+        <p>5,458</p>
+      </div>
+      <div class="revenue" fxLayout="column" fxLayout.xs="row">
+        <h3>Revenue:</h3>
+        <p>$8,57,014</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Dialog -->
+<ng-template #dialog_box>
+  <div class="div">
+  <img class="dialog_img" mat-dialog-image src="../assets/{{big}}_chair.png" alt="zoom_img">
+  <h1 class="padding" mat-dialog-title >Amazing Modern Chair ({{color}}) </h1>
+  <div class="padding" mat-dialog-content >Unit Price:${{price}}</div>
+  <div class="padding" mat-dialog-content >Quantity:{{quantity}}</div>
+  <div class="padding" mat-dialog-content >Total Price:${{price*quantity}}</div>
+  <div class="msg" mat-dialog-content >Item Successfully Added</div>
+  <div  mat-dialog-actions align="center">
+    <button mat-button  mat-dialog-close>Discard</button>
+    <button mat-raised-button color="primary" mat-dialog-close>OK</button>
+  </div>
+</div>
+</ng-template>
+<!-- spinner dialog -->
+<ng-template #spinner>
+
+  <mat-spinner></mat-spinner>
+</ng-template>
+

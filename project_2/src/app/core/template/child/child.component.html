@@ -1,0 +1,8 @@
+<p>Enter number table:</p>
+<input type="text" [(ngModel)]="value1">
+<p>Enter number limit:</p>
+<input type="text" [(ngModel)]="limit">
+<br><br>
+<button (click)="onclick()" mat-raised-button color="primary">ok</button>
+<br>
+<p id="output" [innerHTML]="output"></p>
